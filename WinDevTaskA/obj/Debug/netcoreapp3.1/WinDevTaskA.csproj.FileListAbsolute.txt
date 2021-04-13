@@ -1,0 +1,13 @@
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\bin\Debug\netcoreapp3.1\WinDevTaskA.exe
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\bin\Debug\netcoreapp3.1\WinDevTaskA.deps.json
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\bin\Debug\netcoreapp3.1\WinDevTaskA.runtimeconfig.json
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\bin\Debug\netcoreapp3.1\WinDevTaskA.runtimeconfig.dev.json
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\bin\Debug\netcoreapp3.1\WinDevTaskA.dll
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\bin\Debug\netcoreapp3.1\WinDevTaskA.pdb
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\obj\Debug\netcoreapp3.1\WinDevTaskA.csprojAssemblyReference.cache
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\obj\Debug\netcoreapp3.1\WinDevTaskA.AssemblyInfoInputs.cache
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\obj\Debug\netcoreapp3.1\WinDevTaskA.AssemblyInfo.cs
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\obj\Debug\netcoreapp3.1\WinDevTaskA.csproj.CoreCompileInputs.cache
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\obj\Debug\netcoreapp3.1\WinDevTaskA.dll
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\obj\Debug\netcoreapp3.1\WinDevTaskA.pdb
+C:\Users\Boberz\source\repos\WinDevTaskA\WinDevTaskA\obj\Debug\netcoreapp3.1\WinDevTaskA.genruntimeconfig.cache
