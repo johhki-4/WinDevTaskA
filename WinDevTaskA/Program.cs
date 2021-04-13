@@ -7,9 +7,7 @@ namespace WinDevTaskA
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             String data_path = Directory.GetCurrentDirectory() + "\\testdata1.txt";
-
             String[] data = File.ReadAllLines(data_path);
 
             foreach (String line in data) {
