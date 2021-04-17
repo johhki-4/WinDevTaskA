@@ -6,12 +6,11 @@ namespace WinDevTaskA
 {
     class Program
     {
-        static void Main(string[] args)
+        
+        public static void Main(string[] args)
         {
             String data_path = Directory.GetCurrentDirectory() + "\\testdata1.txt";
             String[] data = File.ReadAllLines(data_path);
-            var left_hand = new List<String>();
-            var right_hand = new List<String>();
             var encoding_table_left = new Dictionary<String, String>()
             {
                 {"0", "   || |"},
@@ -42,17 +41,17 @@ namespace WinDevTaskA
             foreach (String line in data) {
                 line.Trim();
                 
-                left_hand = ExtractLeftData(line);
+                var left_hand = ExtractLeftData(line);
                 Console.WriteLine("left:");
                 foreach (String code in left_hand)
                 {
                     Console.WriteLine(code);
                     //TODO Send to function that translates each code to numeric
-                    TranslateToNumeric(code);
+                    TranslateToNumeric(code, encoding_table_left);
                 }
                 Console.WriteLine();
 
-                right_hand = ExtractRightData(line);
+                var right_hand = ExtractRightData(line);
                 Console.WriteLine("Right:");
                 foreach (String code in right_hand)
                 {
@@ -92,9 +91,15 @@ namespace WinDevTaskA
             return right_data;
         }
 
-        static String TranslateToNumeric(String code)
+        public static String TranslateToNumeric(String code, Dictionary<String, String> table)
         {
-            
+            for (int i = 0; i < code.Length; i++)
+            {
+                if (code[i] != ' ')
+                {
+                    //code.Replace()
+                }
+            }
 
 
             String numeric = code;
