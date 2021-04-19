@@ -4,14 +4,9 @@ using System.IO;
 
 namespace WinDevTaskA
 {
-    class Program
+    public class Program
     {
-        
-        public static void Main(string[] args)
-        {
-            String data_path = Directory.GetCurrentDirectory() + "\\testdata1.txt";
-            String[] data = File.ReadAllLines(data_path);
-            var encoding_table_left = new Dictionary<String, String>()
+        public static Dictionary<String, String> encoding_table_left = new Dictionary<String, String>()
             {
                 {"0001101", "0"},
                 {"0011001", "1"},
@@ -24,7 +19,7 @@ namespace WinDevTaskA
                 {"0110111", "8"},
                 {"0001011", "9"}
             };
-            var encoding_table_right = new Dictionary<String, String>()
+        public static Dictionary<String, String> encoding_table_right = new Dictionary<String, String>()
             {
                 {"1110010", "0"},
                 {"1100110", "1"},
@@ -38,63 +33,18 @@ namespace WinDevTaskA
                 {"1110100", "9"}
             };
 
-            foreach (String line in data) {
-                string numeric_left = "";
-                string numeric_right = "";
-
-                //Left hand numeric values
-                foreach (String code in ExtractLeftData(line))
-                {
-                    numeric_left = numeric_left + TranslateToNumeric(code, encoding_table_left);
-                }
-                
-                //Right hand numeric values
-                foreach (String code in ExtractRightData(line))
-                {
-                    numeric_right = numeric_right + TranslateToNumeric(code, encoding_table_right);
-                }
-
-                //Add whitespaces in the desired location and write to console
-                Console.WriteLine(  numeric_left[0] + " " + numeric_left.Substring(1, 5) + " " + 
-                                    numeric_right.Substring(0, 5) + " " + numeric_right[5]);
-            }
-        }
-
-        //Left hand is (3,7) (3+7, 7) (3+7+7, 7) (3+7+7+7, 7) etc..
-        static List<String> ExtractLeftData(String line)
+        public static void Main(string[] args)
         {
-            //String left_guard = line.Substring(0, 3);
-            var left_data = new List<String>();
-            for (int i = 0; i < 6; i++)
-            {
-                left_data.Add(line.Substring(3 + (7 * i), 7));
-            }
-            //String center_guard = line.Substring(44, 5);
-            //var right_hand = new List<String>();
-            //for (int i = 0; i < 6; i++)
-            //{
-            //    right_hand.Add(line.Substring(50 + (7 * i), 7));
-            //}
-            //String right_guard = line.Substring(line.Length - 3, 3);
-            //Console.WriteLine("line start:" + left_guard + "-" + center_guard + "-" + right_guard + ".");
-            return left_data;
-        }
+            Line line = new Line();
+            String data_path = Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString()).ToString()) + "\\testdata1.txt";
 
-        static List<String> ExtractRightData(String line)
-        {
-            var right_data = new List<String>();
-            for (int i = 0; i < 6; i++)
-            {
-                right_data.Add(line.Substring(50 + (7 * i), 7));
-            }
-            return right_data;
-        }
+            line.Data = File.ReadAllLines(data_path)[0];
+            line.TranslateToBinary();
 
-        public static String TranslateToNumeric(String code, Dictionary<String, String> table)
-        {
-            code = code.Replace(' ', '0');
-            code = code.Replace('▍', '1');
-            return table[code];
+            line.ExtractLeftHand();
+            line.ExtractRightHand();
+
+            Console.WriteLine(line.TranslateLeftToNumeric() + " " + line.TranslateRightToNumeric());
         }
     }
 }
