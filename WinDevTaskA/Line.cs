@@ -38,34 +38,39 @@ public class Line
     public string LeftHand { get; set; }
     public string RightHand { get; set; }
 
-    public void ExtractLeftHand()
-    {
-        LeftHand = Binary.Substring(3, 42);
-    }
-
-    public void ExtractRightHand()
-    {
-        RightHand = Binary.Substring(50, 42);
-    }
-
+    //Restructure inputs from pipe/space(|, ) to 1/0.
     public void TranslateToBinary()
     {
         Binary = Data.Replace(' ', '0');
         Binary = Binary.Replace('▍', '1');
     }
 
+    //Save the binary representation of the left hand
+    public void ExtractLeftHand()
+    {
+        LeftHand = Binary.Substring(3, 42);
+    }
+
+    //Save the binary representation of the right hand
+    public void ExtractRightHand()
+    {
+        RightHand = Binary.Substring(50, 42);
+    }
+
+    //By using the encoding table, translate each section into its numeric value.
     public string TranslateLeftToNumeric()
     {
         string left_numeric = "";
-        string temp = "";
         left_numeric = left_numeric + encoding_table_left[LeftHand.Substring(0, 7)] + " ";
         for (int i = 1; i < 6; i++)
         {
-            temp = encoding_table_left[LeftHand.Substring((7 * i), 7)];
+            var temp = encoding_table_left[LeftHand.Substring((7 * i), 7)];
             left_numeric = left_numeric + temp;
         }
         return left_numeric;
     }
+
+    //By using the encoding table, translate each section into its numeric value.
     public string TranslateRightToNumeric()
     {
         string right_numeric = "";
