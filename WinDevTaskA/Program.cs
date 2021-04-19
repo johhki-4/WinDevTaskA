@@ -13,51 +13,50 @@ namespace WinDevTaskA
             String[] data = File.ReadAllLines(data_path);
             var encoding_table_left = new Dictionary<String, String>()
             {
-                {"0", "   || |"},
-                {"1", "  ||  |"},
-                {"2", "  |  ||"},
-                {"3", " |||| |"},
-                {"4", " |   ||"},
-                {"5", " ||   |"},
-                {"6", " | ||||"},
-                {"7", " ||| ||"},
-                {"8", " || |||"},
-                {"9", "   | ||"}
+                {"0001101", "0"},
+                {"0011001", "1"},
+                {"0010011", "2"},
+                {"0111101", "3"},
+                {"0100011", "4"},
+                {"0110001", "5"},
+                {"0101111", "6"},
+                {"0111011", "7"},
+                {"0110111", "8"},
+                {"0001011", "9"}
             };
             var encoding_table_right = new Dictionary<String, String>()
             {
-                {"0", "|||  | "},
-                {"1", "||  || "},
-                {"2", "|| ||  "},
-                {"3", "|    | "},
-                {"4", "| |||  "},
-                {"5", "|  ||| "},
-                {"6", "| |    "},
-                {"7", "|   |  "},
-                {"8", "|  |   "},
-                {"9", "||| |  "}
+                {"1110010", "0"},
+                {"1100110", "1"},
+                {"1101100", "2"},
+                {"1000010", "3"},
+                {"1011100", "4"},
+                {"1001110", "5"},
+                {"1010000", "6"},
+                {"1000100", "7"},
+                {"1001000", "8"},
+                {"1110100", "9"}
             };
 
             foreach (String line in data) {
-                line.Trim();
+                string numeric_left = "";
+                string numeric_right = "";
+
+                //Left hand numeric values
+                foreach (String code in ExtractLeftData(line))
+                {
+                    numeric_left = numeric_left + TranslateToNumeric(code, encoding_table_left);
+                }
                 
-                var left_hand = ExtractLeftData(line);
-                Console.WriteLine("left:");
-                foreach (String code in left_hand)
+                //Right hand numeric values
+                foreach (String code in ExtractRightData(line))
                 {
-                    Console.WriteLine(code);
-                    //TODO Send to function that translates each code to numeric
-                    TranslateToNumeric(code, encoding_table_left);
-                }
-                Console.WriteLine();
-
-                var right_hand = ExtractRightData(line);
-                Console.WriteLine("Right:");
-                foreach (String code in right_hand)
-                {
-                    Console.WriteLine(code);
+                    numeric_right = numeric_right + TranslateToNumeric(code, encoding_table_right);
                 }
 
+                //Add whitespaces in the desired location and write to console
+                Console.WriteLine(  numeric_left[0] + " " + numeric_left.Substring(1, 5) + " " + 
+                                    numeric_right.Substring(0, 5) + " " + numeric_right[5]);
             }
         }
 
@@ -93,17 +92,9 @@ namespace WinDevTaskA
 
         public static String TranslateToNumeric(String code, Dictionary<String, String> table)
         {
-            for (int i = 0; i < code.Length; i++)
-            {
-                if (code[i] != ' ')
-                {
-                    //code.Replace()
-                }
-            }
-
-
-            String numeric = code;
-            return numeric;
+            code = code.Replace(' ', '0');
+            code = code.Replace('▍', '1');
+            return table[code];
         }
     }
 }
